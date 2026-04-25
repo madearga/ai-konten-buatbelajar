@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 
-// CodeMirror — lightweight, Turbopack-friendly
 const CodeMirrorEditor = dynamic(
   () => import('./codemirror-editor').then(m => m.CodeMirrorEditor),
   {
@@ -38,7 +37,41 @@ const FILES: FileItem[] = [
   { name: 'Referensi', path: '12-referensi', icon: '📚' },
 ]
 
+// Dark mode color tokens
+const dark = {
+  bg: '#0f1117',
+  sidebar: '#161b22',
+  surface: '#1c2129',
+  border: '#21262d',
+  text: '#c9d1d9',
+  textMuted: '#8b949e',
+  textDim: '#484f58',
+  accent: '#58a6ff',
+  accentBg: '#1a3a5c',
+  danger: '#f59e0b',
+  success: '#3fb950',
+  saveBtn: '#238636',
+  saveBtnHover: '#2ea043',
+}
+
+const light = {
+  bg: '#ffffff',
+  sidebar: '#fafafa',
+  surface: '#f9fafb',
+  border: '#e5e7eb',
+  text: '#111827',
+  textMuted: '#6b7280',
+  textDim: '#9ca3af',
+  accent: '#3b82f6',
+  accentBg: '#eff6ff',
+  danger: '#f59e0b',
+  success: '#10b981',
+  saveBtn: '#3b82f6',
+  saveBtnHover: '#2563eb',
+}
+
 export function EditorView() {
+  const [darkMode, setDarkMode] = useState(false)
   const [selectedFile, setSelectedFile] = useState<FileItem | null>(null)
   const [content, setContent] = useState('')
   const [rawContent, setRawContent] = useState('')
@@ -46,6 +79,8 @@ export function EditorView() {
   const [loading, setLoading] = useState(false)
   const [dirty, setDirty] = useState(false)
   const [saveMsg, setSaveMsg] = useState('')
+
+  const c = darkMode ? dark : light
 
   const loadFile = useCallback(async (file: FileItem) => {
     setLoading(true)
@@ -108,23 +143,32 @@ export function EditorView() {
     return () => window.removeEventListener('keydown', handler)
   }, [dirty, saveFile])
 
+  // Persist dark mode preference
+  useEffect(() => {
+    const saved = localStorage.getItem('editor-dark')
+    if (saved === 'true') setDarkMode(true)
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('editor-dark', String(darkMode))
+  }, [darkMode])
+
   return (
-    <div style={{ display: 'flex', height: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div style={{ display: 'flex', height: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif', background: c.bg, color: c.text }}>
       {/* Sidebar */}
       <div style={{
         width: 260,
         minWidth: 260,
-        borderRight: '1px solid #e5e7eb',
-        background: '#fafafa',
+        borderRight: `1px solid ${c.border}`,
+        background: c.sidebar,
         overflowY: 'auto',
         display: 'flex',
         flexDirection: 'column',
       }}>
-        <div style={{ padding: '16px 16px 12px', borderBottom: '1px solid #e5e7eb' }}>
-          <h2 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: '#111827' }}>
+        <div style={{ padding: '16px 16px 12px', borderBottom: `1px solid ${c.border}` }}>
+          <h2 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: c.text }}>
             🤖 Content Editor
           </h2>
-          <p style={{ margin: '4px 0 0', fontSize: 11, color: '#9ca3af' }}>
+          <p style={{ margin: '4px 0 0', fontSize: 11, color: c.textDim }}>
             Edit halaman MDX langsung
           </p>
         </div>
@@ -140,9 +184,9 @@ export function EditorView() {
                 width: '100%',
                 padding: '9px 16px',
                 border: 'none',
-                borderLeft: selectedFile?.path === file.path ? '3px solid #3b82f6' : '3px solid transparent',
-                background: selectedFile?.path === file.path ? '#eff6ff' : 'transparent',
-                color: selectedFile?.path === file.path ? '#1d4ed8' : '#374151',
+                borderLeft: selectedFile?.path === file.path ? `3px solid ${c.accent}` : '3px solid transparent',
+                background: selectedFile?.path === file.path ? c.accentBg : 'transparent',
+                color: selectedFile?.path === file.path ? c.accent : c.textMuted,
                 textAlign: 'left',
                 cursor: 'pointer',
                 fontSize: 12.5,
@@ -155,14 +199,26 @@ export function EditorView() {
             </button>
           ))}
         </nav>
-        <div style={{ padding: 12, borderTop: '1px solid #e5e7eb', display: 'flex', gap: 8 }}>
-          <a href="/docs" style={{ fontSize: 11, color: '#6b7280', textDecoration: 'none' }}>
-            ← Docs
-          </a>
-          <span style={{ color: '#d1d5db' }}>|</span>
-          <a href="/" style={{ fontSize: 11, color: '#6b7280', textDecoration: 'none' }}>
-            Home
-          </a>
+        <div style={{ padding: 12, borderTop: `1px solid ${c.border}`, display: 'flex', gap: 8, alignItems: 'center' }}>
+          <a href="/docs" style={{ fontSize: 11, color: c.textDim, textDecoration: 'none' }}>← Docs</a>
+          <span style={{ color: c.border }}>|</span>
+          <a href="/" style={{ fontSize: 11, color: c.textDim, textDecoration: 'none' }}>Home</a>
+          <div style={{ flex: 1 }} />
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            title={darkMode ? 'Light mode' : 'Dark mode'}
+            style={{
+              background: 'none',
+              border: `1px solid ${c.border}`,
+              borderRadius: 6,
+              padding: '3px 8px',
+              cursor: 'pointer',
+              fontSize: 14,
+              lineHeight: 1,
+            }}
+          >
+            {darkMode ? '☀️' : '🌙'}
+          </button>
         </div>
       </div>
 
@@ -172,29 +228,29 @@ export function EditorView() {
         <div style={{
           padding: '0 16px',
           height: 44,
-          borderBottom: '1px solid #e5e7eb',
+          borderBottom: `1px solid ${c.border}`,
           display: 'flex',
           alignItems: 'center',
           gap: 12,
-          background: '#fff',
+          background: c.bg,
           flexShrink: 0,
         }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>
+          <span style={{ fontSize: 13, fontWeight: 600, color: c.text }}>
             {selectedFile ? `${selectedFile.icon} ${selectedFile.name}` : 'Pilih file di sidebar'}
           </span>
-          <span style={{ fontSize: 11, color: '#9ca3af', fontFamily: 'monospace' }}>
+          <span style={{ fontSize: 11, color: c.textDim, fontFamily: 'monospace' }}>
             {selectedFile ? `${selectedFile.path}.mdx` : ''}
           </span>
           {dirty && (
             <span style={{
-              fontSize: 10, color: '#f59e0b', fontWeight: 700,
-              background: '#fffbeb', padding: '2px 8px', borderRadius: 10,
+              fontSize: 10, color: c.danger, fontWeight: 700,
+              background: darkMode ? '#3d2e00' : '#fffbeb', padding: '2px 8px', borderRadius: 10,
             }}>
               Modified
             </span>
           )}
           <div style={{ flex: 1 }} />
-          {saveMsg && <span style={{ fontSize: 12, color: '#10b981', fontWeight: 500 }}>{saveMsg}</span>}
+          {saveMsg && <span style={{ fontSize: 12, color: c.success, fontWeight: 500 }}>{saveMsg}</span>}
           {selectedFile && (
             <button
               onClick={saveFile}
@@ -203,8 +259,8 @@ export function EditorView() {
                 padding: '5px 16px',
                 borderRadius: 6,
                 border: 'none',
-                background: dirty ? '#3b82f6' : '#d1d5db',
-                color: dirty ? '#fff' : '#9ca3af',
+                background: dirty ? c.saveBtn : c.border,
+                color: dirty ? '#fff' : c.textDim,
                 cursor: dirty ? 'pointer' : 'not-allowed',
                 fontSize: 12,
                 fontWeight: 600,
@@ -219,30 +275,30 @@ export function EditorView() {
         {/* Editor */}
         <div style={{ flex: 1, overflow: 'hidden' }}>
           {loading && (
-            <div style={{ padding: 40, textAlign: 'center', color: '#9ca3af' }}>⏳ Memuat...</div>
+            <div style={{ padding: 40, textAlign: 'center', color: c.textDim }}>⏳ Memuat...</div>
           )}
           {!selectedFile && !loading && (
-            <div style={{ padding: 60, textAlign: 'center', color: '#d1d5db' }}>
+            <div style={{ padding: 60, textAlign: 'center', color: c.textDim }}>
               <p style={{ fontSize: 64, margin: '0 0 16px' }}>📝</p>
-              <p style={{ fontSize: 16, color: '#9ca3af' }}>Pilih halaman dari sidebar untuk mulai mengedit</p>
-              <p style={{ fontSize: 12, color: '#d1d5db', marginTop: 8 }}>Support: MDX, frontmatter, JSX components</p>
+              <p style={{ fontSize: 16, color: c.textMuted }}>Pilih halaman dari sidebar untuk mulai mengedit</p>
+              <p style={{ fontSize: 12, color: c.textDim, marginTop: 8 }}>Support: MDX, frontmatter, JSX components</p>
             </div>
           )}
           {selectedFile && !loading && (
-            <CodeMirrorEditor value={content} onChange={handleEditorChange} />
+            <CodeMirrorEditor value={content} onChange={handleEditorChange} dark={darkMode} />
           )}
         </div>
 
         {/* Status Bar */}
         <div style={{
           height: 24,
-          background: '#f3f4f6',
-          borderTop: '1px solid #e5e7eb',
+          background: c.sidebar,
+          borderTop: `1px solid ${c.border}`,
           display: 'flex',
           alignItems: 'center',
           padding: '0 12px',
           fontSize: 10,
-          color: '#9ca3af',
+          color: c.textDim,
           gap: 16,
           flexShrink: 0,
         }}>
@@ -250,8 +306,8 @@ export function EditorView() {
           <span>UTF-8</span>
           {content && <span>{content.split('\n').length} lines</span>}
           {content && <span>{content.length} chars</span>}
-          {dirty && <span style={{ color: '#f59e0b' }}>● Modified</span>}
-          {!dirty && selectedFile && <span style={{ color: '#10b981' }}>● Saved</span>}
+          {dirty && <span style={{ color: c.danger }}>● Modified</span>}
+          {!dirty && selectedFile && <span style={{ color: c.success }}>● Saved</span>}
         </div>
       </div>
     </div>
