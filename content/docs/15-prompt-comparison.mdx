@@ -1,0 +1,109 @@
+---
+title: Visual Prompt Comparison
+description: Perbandingan kualitas output antara tipe prompt (Basic vs Detailed vs JSON) — grafik visual kegunaan memilih format yang tepat
+---
+
+## Prompt Effectiveness Comparison
+
+<Chart 
+  data={[
+    { name: "Basic", "Kontrol": 2, "Konsistensi": 30, "Kualitas": "⭐⭐", "Waktu": "Cepat (3 detik)" },
+    { name: "Detailed (Panjang)", "Kontrol": 5, "Konsistensi": 80, "Kualitas": "⭐⭐⭐", "Waktu": "Menengah (10 detik)" },
+    { name: "JSON Terstruktur", "Kontrol": 7, "Konsistensi": 95, "Kualitas": "⭐⭐⭐", "Waktu": "Sedang (15 detik)" },
+    { name: "Mix (Text + JSON)", "Kontrol": 8, "Konsistensi": 90, "Kualitas": "⭐⭐⭐", "Waktu": "Sangat kompleks (20 detik)" },
+  ]}
+  type="bar"
+  title="Perbandingan Kualitas Output per Tipe Prompt"
+  height={300}
+/>
+
+### Kesimpulan Kualitas
+
+<Tabs items={['Ringkasan', 'Trade-offs']}>
+
+  <Tab>
+    ### Ringkasan
+
+    | Tipe Prompt | Kontrol | Konsistensi | Kualitas | Waktu | Cocok Untuk |
+    |-----------|---------|-----------|---------|
+    | Basic | 2/5 | ⭐⭐ (30%) | Cepat | Brainstorming cepat, eksplorasi awal |
+    | Detailed (Panjang) | 5/5 | ⭐⭐ (80%) | Sangat Tinggi | UGC, testimonial, campaign konsepsial |
+    | JSON Terstruktur | 7/5 | ⭐⭐ (95%) | Sangat Tinggi | Brand story, kompleks produk, automation |
+    | Mix (Text + JSON) | 8/5 | ⭐⭐ (90%) | Sangat Tinggi | Profesional, kontrol maksimal |
+
+    **Rekomendasi:** Mulai dengan **Detailed (Panjang)** untuk kebutuhan FMCG/Beauty. Upgrade ke **Mix** hanya saat butuh automation atau batch production.
+  </Tab>
+
+  <Tab>
+    ### Trade-offs
+
+    | Tipe | Kelebihan | Kekurangan |
+    |------|-------------|
+    | **Basic** | + Paling cepat, paling gampang, tapi hasil acak | - Paling sedikit kontrol, hasil kurang presisi |
+    | **Detailed** | + Hasil sangat presisi, tapi butuh effort lebih | - Control tinggi, penguraian lebih detail |
+    | **JSON** | + Struktur paling terorganisir, cocok untuk branding | - Format ideal untuk multi-shot production |
+    | **Mix** | + Kombinasi terbaik — presisi tinggi + struktur jelas | - Lebih kompleks, tapi fleksibel untuk perubahan terakhir menit |
+
+    **Waktu vs Kualitas:**
+    - Semakin detail → kualitas naik
+    - Tapi waktu generasi juga naik (trade-off)
+  </Tab>
+</Tabs>
+
+---
+
+## Visual Guide: Hasil Render vs Target Kualitas
+
+Untuk bantu kamu memilih format prompt yang tepat, berikut perbandingan visual **(ilmustrasi, bukan render asli)**:
+
+### Format Basic vs Detailed
+
+| Aspek | Basic Prompt | Detailed Prompt |
+|--------|---------------|--------------|
+| **Detail produk** | "Serum putih" | "Serum putih, dengar matte finish, soft studio lighting" |
+| **Lighting** | "Soft natural light" | "Dramatic studio lighting from left with key light, creating soft shadows" |
+| **Kamera** | "Static, eye level" | "Slow orbit (45°) → close-up (0°) over 8 seconds" |
+| **Atmosfer** | "Clean, simple" | "Luxurious premium commercial aesthetic with cinematic color grading" |
+| **Motion** | "Animasi sederhana" | "Smooth liquid metal formation, droplets stretching into temples" |
+| **Result** | Standar product photo | High-end beauty brand commercial |
+
+**Kapan pakai Basic:** Saat butuh cepat atau testing ide awal. Cocok untuk social media quick.
+
+---
+
+## Keputusan: Pilih Format yang Tepat
+
+<Callout type="info" title="Rekomendasi Alur">
+Untuk FMCG/Beauty/Health brands:
+1. **Campaign/Branded Content** → Gunakan **Detailed (Panjang)** atau **JSON Terstruktur**
+   - Perlu storytelling, cinematic lighting, polished finish
+   - Hasil: Brand yang kredibel dan premium
+
+2. **UGC Ads** → Gunakan **Detailed (Panjang)** untuk testimonial / demo
+   - Perlu natural setting, genuine vibe, produk terlihat jelas
+   - Format "Mix" untuk variasi batch production
+
+3. **Social Media** → **Basic** atau **Mix** cukup
+   - Kecepatan lebih penting daripada kualitas super detail
+   - Bisa gunakan "auto-generate" features di Nano Banana Pro
+
+4. **Batch Production** → Gunakan **JSON Terstruktur** atau **Mix**
+   - Memudahkan A/B testing dengan struktur yang konsisten
+   - Generate 10-20 variasi sekaligus, filter yang terbaik
+
+**Kapan pindah ke JSON Terstruktur:** 
+Jika kamu butuh **workflow automation** (auto-generate 10+ variasi, combine otomatis), gunakan format JSON untuk setiap shot dalam sequence terpisah.
+</Callout>
+
+---
+
+## Next Steps: Produksi Aktual
+
+Di Prompt Gallery, kamu bisa memilih template, copy prompt, dan paste langsung ke AI tool (Nano Banana Pro / Seedance 2.0 / Sora 2).
+
+Hasil render yang sebenarnya akan:
+- **Lebih konsisten** — karena struktur prompt yang terjaga
+- **Lebih presisi** — karena deskripsi scene yang detail
+- **Lebih mudah di-modify** — karena kamu bisa ubah bagian tertentu tanpa ubah semuanya
+
+Mulai dengan **Detailed (Panjang)**, dan lihat sendi hasilnya. Perlahan upgrade ke **JSON Terstruktur** kalau butuh kontrol lebih untuk batch production.

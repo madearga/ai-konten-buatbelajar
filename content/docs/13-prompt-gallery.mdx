@@ -1,0 +1,289 @@
+---
+title: Prompt Gallery — Contoh Hasil Render
+description: Perbedaan prompt format (Basic vs Detailed vs JSON) dan hasil render contoh untuk berbagai use case
+---
+
+# Prompt Gallery
+
+<Callout type="info" title="Catatan Penting">
+Gambar contoh di bawah ini **bukan render sesunggu dari AI**, tapi contoh ilustrasi perbedaan tipe prompt. Untuk hasil sesunggu, generate prompt di Nano Banana Pro, Seedance 2.0, atau tools lain.
+</Callout>
+
+## Perbandingan Prompt Format
+
+<Tabs items={['Perbandingan Format', 'Galeri Hasil (Ilustrasi)']}>
+  <Tab>
+    ### Perbandingan Format
+
+    <Chart 
+      title="Perbandingan Prompt Format"
+      height={320}
+      data={[
+        { name: "Basic", "Kontrol": 3, "Kejelasan": 2, "Waktu": "Cepat (5 detik)", "Konsistensi": "Rendah (30%)", color: "#3b82f6" },
+        { name: "Detailed (Panjang)", "Kontrol": 5, "Kejelasan": 4, "Waktu": "Menengah (10 detik)", "Konsistensi": "Sedang (50%)", color: "#10b981" },
+        { name: "JSON + Mix", "Kontrol": 7, "Kejelasan": 5, "Waktu": "Sulit (15 detik)", "Konsistensi": "Tinggi (70%)", "Color": "#8b5cf6" },
+        { name: "Only JSON", "Kontrol": 10, "Kejelasan": 1, "Waktu": "Cepat (5 detik)", "Konsistensi": "Sangat (90%)", color: "#ef4444" },
+      ]}
+      type="bar"
+    />
+
+    **Kesimpulan:**
+    - **Basic** — Cepat tapi kurang kontrol. Cocok untuk brainstorming cepat.
+    - **Detailed (Panjang)** — Lebih banyak kontrol tapi proses lebih lambat. Lebih presisi.
+    - **JSON + Mix** — Paling kompleks tapi fleksibel. Struktur + deskripsi = presisi maksimal.
+    - **Only JSON** — Lebih cepat tapi mudah salah satu typo = rusak total.
+
+  </Tab>
+  <Tab>
+    ### Galeri Hasil (Ilustrasi)
+
+    Di bawah ini adalah ilustrasi konsept bagaimana prompt berbeda-tipe menghasilkan output. **Gambar dibuat dengan prompt dummy untuk ilustrasi — bukan render sesunggu.**
+
+    #### 1. Basic Prompt vs Detailed Prompt
+
+    **Basic Prompt:**
+    ```text
+    glasses on gray background, rotating slowly
+    ```
+
+    **Detailed Prompt:**
+    ```text
+    A sleek pair of futuristic glasses, made of dark metal with gunmetal finish, 
+    rotates slowly on a neutral gray studio background. Premium commercial aesthetic. 
+    Camera starts with a wide shot (45-degree angle) then gradually zooms into a close-up of the frame. 
+    Soft studio lighting from the left creates subtle reflections on the metal surface. 
+    The glasses complete one full rotation over 8 seconds.
+    ```
+
+    **Perbedaan Kualitas (Ilustrasi):**
+    - **Basic:** Hasil "standar" — wajah sederhana, lighting standar, tidak ada detail materials.
+    - **Detailed:** Hasil "premium" — ada materials (gunmetal finish, reflections), lighting setup (studio + soft shadows), detail motion (slow rotation, zoom).
+
+    #### 2. Contoh Product: Skincare Serum
+
+    **Basic Prompt (Cepat):**
+    ```text
+    White skincare serum bottle, marble surface, natural light
+    ```
+
+    **Detailed Prompt (Presisi):**
+    ```text
+    Professional product photography of a white skincare serum bottle, 
+    placed on a smooth polished marble surface with soft water droplets around the base. 
+    Morning golden hour light filters through sheer curtains from the left, creating a warm, inviting atmosphere. 
+    Subtle glow effect on the bottle surface, highlighting the product's premium positioning. 
+    Shot on Phase One IQ4, 120mm f/2.8 lens, hyper-realistic, ultra detailed, 8K resolution. 
+    Beauty editorial aesthetic, clean and minimal composition. 
+    Shallow depth of field, bokeh background in soft-focus.
+    ```
+
+    **Contoh Gambar (Placeholder):**
+    *   Basic: Botol putih dengan outline sederhana
+    *   Detailed: Botol putih dengan water droplets, shadow halus, label premium yang jelas
+
+    #### 3. Contoh Lifestyle: Supplement Bottle
+
+    **Basic Prompt:**
+    ```text
+    Supplement bottle, wood counter
+    ```
+
+    **Detailed Prompt (Cerita):**
+    ```text
+    Lifestyle product photography of a supplement bottle, sitting on a rustic wooden kitchen counter next to a glass of water with fresh fruits visible in soft-focus background. 
+    Natural morning light from a large window illuminates the scene with warm tones. 
+    The label is clearly readable and facing camera, positioned naturally on the bottle's front. 
+    Shot on Canon R5, 85mm f/1.4, shallow depth of field, warm color grading, realistic, aspirational, clean composition. 
+    ```
+
+    **Perbedaan:**
+    - **Basic:** Hanya produk tanpa konteks. Bisa dipakai dimana saja.
+    - **Detailed:** Ada cerita (morning di dapur), konteks (dapur kayu), mood (warm, healthy). Lebih emosional.
+
+    #### 4. Contoh Animation: Liquid Metal Formation
+
+    **Basic Prompt (Hanya Deskripsi):**
+    ```text
+    Glasses formed from liquid metal, transparent background
+    ```
+
+    **Detailed Prompt (Teknis):**
+    ```text
+    A sleek pair of futuristic glasses, constructed from liquid gunmetal alloy. 
+    The temples gradually form from droplets that stretch into complete frames, creating a smooth metallic transition. 
+    I used a Boolean operator to merge two geometries, so the temple structures exist seamlessly. 
+    For the animation timing, I started with a 0.3-second ease-out and accelerated to a 0.8-second ease-in over 1.5 seconds. 
+    The metal material has a polished surface with slight specular highlights that respond realistically to the environment's light.
+    ```
+
+    **Perbedaan:**
+    - **Basic:** Akan terlihat sebagai "botol metal statis" yang tidak bergerak.
+    - **Detailed:** Tempel dan droplets "terbentuk" dengan ease-in/out timing. Akan terlihat fluid dan organik.
+
+    **Contoh Gambar (Placeholder):**
+    *   Basic: Ikon kacamata metal statis
+    *   Detailed: Animasi GIF (jika bisa) menunjukkan droplets merging
+
+  </Tab>
+</Tabs>
+
+---
+
+## Cara Hasilkan Prompt di Produsi
+
+Untuk hasil yang sebenarnya di studio production (bukan ilustrasi), ikuti pipeline ini:
+
+<Steps>
+
+### Step 1: Pilih Prompt Template
+
+Sesuaikan template prompt di Prompt Library dengan kebutuhan project:
+
+- **Skincare** → Pakai template "Skincare Serum Product Shot"
+- **Supplement** → Pakai template "Supplement Bottle Lifestyle"
+- **Lipstick** → Pakai template "Lipstick Swatch Grid"
+- **Snack/F&B** → Sesuaikan untuk lifestyle content
+
+### Step 2: Generate Base Image (Nano Banana Pro)
+
+Pilih model: **Nano Banana Pro 2** atau alternatif (Dreamina, Pixazo).
+
+Prompt contoh (Detailed):
+```text
+Professional product photography of a [PRODUK] bottle, 
+placed on a smooth marble surface with soft lighting and subtle product reflections.
+Shot on Phase One IQ4, 120mm f/2.8, hyper-realistic, ultra detailed, 8K resolution.
+Style: Beauty editorial, clean, minimal, luxury brand aesthetic.
+```
+
+### Step 3: Test & Iterate
+
+Generate 3-5 variasi dengan sedikit perubahan prompt (warna lighting, angle berbeda). Pilih yang terbaik.
+
+### Step 4: Video Generation (Seedance 2.0 / Sora 2)
+
+Upload gambar terpilih ke **Seedance 2.0**:
+- Choose: `Image to Video` → 10 detik video, cinematic motion
+- Tambahkan: `text prompt` untuk kontrol kamera (pan, zoom, tilt)
+
+Prompt video contoh:
+```text
+[Camera: Slow zoom in from wide shot to product close-up. Focus on the bottle's label and reflections.
+[Motion: The camera orbits slowly around the product, creating a dynamic reveal that emphasizes its premium positioning.
+[Timing: 5 seconds. In 0-2s: slow zoom reveal, 2-8s: orbit around product, 5s: final close-up holding position.
+[Style: Luxury beauty product commercial, soft ambient lighting, shallow depth of field, high-end feel.
+```
+
+### Step 5: Lip Sync & Audio (ElevenLabs + Suno)
+
+- Voice over: Generate dengan **ElevenLabs** (Indonesian voice untuk FMCG market)
+- Music: Background track dari **Suno** atau library free
+
+### Step 6: Final Edit (CapCut)
+
+- Gabungkan semua clips
+- Tambahkan subtitle (otomatis via CapCut atau ElevenLabs auto-caption)
+- Branding overlay (logo, watermark)
+
+</Steps>
+
+---
+
+## Prompt Testing Framework
+
+Untuk membandingan hasil prompt, gunakan matrix ini:
+
+| Dimensi | Basic | Detailed | JSON | Tips |
+|---------|-------|----------|------|-----|
+| **Kejelasan** | Rendah | Tinggi | Sangat Tinggi | Paling Jelas | ⚠️ Terlalu kompleks |
+| **Waktu** | Cepat | Sedang | Lambat | Sangat Lambat | ⚠️ Inefisien |
+| **Konsistensi** | Rendah (30%) | Sedang (50%) | Tinggi (70%) | Sangat Tinggi (90%) | ⚠️ Tidak repeatabil |
+| **Kemungkinan Variasi** | Tinggi (random) | Menengah | Sedang | Rendah (low) | Paling Rendah (random) | ⚠️ Sulit prediksi |
+| **Kesalahan Error** | Sering (salah kata, typo JSON) | Jarang | Jarang | Sangat Jarang | Hampir Nol | ⚠️ Paling Aman |
+
+---
+
+## Catatan untuk Pemula
+
+<Tabs items={['Mulai Pakai AI', 'Common Pitfalls', 'Workflow Best Practices']}>
+  <Tab>
+    ### Mulai Pakai AI
+
+    **1. Mulai dengan Basic Prompt**
+    Tambahkan detail sedikit demi menigkatkan kualitas:
+    - `glasses on gray background` → `sleek metal glasses on gray background, polished surface`
+    - `serum bottle` → `professional serum bottle on marble surface with studio lighting`
+
+    **2. Gunakan Seedance "Smart Refine"**
+    Setelah generate, Seedance auto-offers 2-3 rekomendasi. Pilih yang paling mirip prompt kamu.
+
+    **3. Test Sebelum Produksi**
+    Gunakan free tier dulu (Dreamina, Kling) untuk cek apakah prompt kamu bekerja.
+
+  </Tab>
+  <Tab>
+    ### Common Pitfalls
+
+    **⚠️ Randomness**
+    Jangan berharap hasil sama setiap kali. Seed matters!
+
+    **⚠️ Over-Engineering**
+    Prompt tidak harus lebih panjang = lebih baik. Detail yang tidak relevan hanya bikin AI bingung.
+
+    **⚠️ Format Errors**
+    JSON error: satu kurung bracket buka = seluruh prompt gagal.
+    Selalu validate JSON di tool seperti `jsonlint.com`.
+
+    **⚠️ Vague Descriptions**
+    "Good lighting" → "Soft studio lighting from upper left with key light at 1.2m distance, fill 30% with soft fill"
+    Lebih spesifik = lebih mungkin AI mengerti apa yang kamu mau.
+
+  </Tab>
+  <Tab>
+    ### Workflow Best Practices
+
+    **Version Control**
+    Simpan setiap iterasi prompt di Notion atau file terpisah:
+    ```
+    [Project: Skincare Serum]
+    V1.0: Basic prompt
+    V1.1: Added materials (gunmetal finish)
+    V1.2: Detailed prompt — WINNER
+    ```
+
+    **A/B Testing**
+    Produksi 2-3 variasi dengan prompt berbeda:
+    - Versi A: Basic prompt
+    - Versi B: Detailed prompt (lebih mahal)
+    A/B test di klien → pilih yang lebih baik.
+
+    **Document Hasil**
+    Catat apa yang berhasil dan apa yang gagal:
+    - Prompt jenis apa yang paling bekerja untuk brand kamu?
+    - Model AI apa yang paling andal?
+
+  </Tab>
+</Tabs>
+
+---
+
+## Referensi Lanjutan
+
+- **Prompt Testing Framework** — Untuk membandingan hasil prompt
+- **Theoretically Media (Yaroflasher)** — Referensi prompt quality dan struktur
+- **@IamEmily2050** — Open-source JSON prompt templates untuk Nano Banana, Veo3, Grok Imagine
+- **Insane Seedance Prompts (Creaifas)** — Repository prompt koleksi untuk produk
+
+---
+
+## Quick Start
+
+<Callout type="success" title="Langkah Berikutnya">
+1. Buka `/admin` editor
+2. Pilih modul **12-referensi** → Prompt Reference Library
+3. Pilih prompt template yang sesuai
+4. Copy prompt ke clipboard
+5. Buka AI tool (Nano Banana Pro, Seedance, dll.)
+6. Generate hasil
+7. Review dan iterasi
+</Callout>
