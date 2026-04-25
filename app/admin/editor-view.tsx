@@ -5,14 +5,12 @@ import dynamic from 'next/dynamic'
 
 const CodeMirrorEditor = dynamic(
   () => import('./codemirror-editor').then(m => m.CodeMirrorEditor),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ padding: 40, textAlign: 'center', color: '#6b7280' }}>
-        Loading editor...
-      </div>
-    ),
-  }
+  { ssr: false, loading: () => <div style={{ padding: 40, textAlign: 'center', color: '#6b7280' }}>Loading...</div> }
+)
+
+const TipTapVisual = dynamic(
+  () => import('./tiptap-editor').then(m => m.TipTapVisual),
+  { ssr: false, loading: () => <div style={{ padding: 40, textAlign: 'center', color: '#6b7280' }}>Loading...</div> }
 )
 
 interface FileItem {
@@ -72,6 +70,7 @@ const light = {
 
 export function EditorView() {
   const [darkMode, setDarkMode] = useState(false)
+  const [editorMode, setEditorMode] = useState<'code' | 'visual'>('visual')
   const [selectedFile, setSelectedFile] = useState<FileItem | null>(null)
   const [content, setContent] = useState('')
   const [rawContent, setRawContent] = useState('')
@@ -147,10 +146,15 @@ export function EditorView() {
   useEffect(() => {
     const saved = localStorage.getItem('editor-dark')
     if (saved === 'true') setDarkMode(true)
+    const savedMode = localStorage.getItem('editor-mode') as 'code' | 'visual' | null
+    if (savedMode) setEditorMode(savedMode)
   }, [])
   useEffect(() => {
     localStorage.setItem('editor-dark', String(darkMode))
   }, [darkMode])
+  useEffect(() => {
+    localStorage.setItem('editor-mode', editorMode)
+  }, [editorMode])
 
   return (
     <div style={{ display: 'flex', height: '100vh', fontFamily: 'system-ui, -apple-system, sans-serif', background: c.bg, color: c.text }}>
@@ -252,6 +256,28 @@ export function EditorView() {
           <div style={{ flex: 1 }} />
           {saveMsg && <span style={{ fontSize: 12, color: c.success, fontWeight: 500 }}>{saveMsg}</span>}
           {selectedFile && (
+            <div style={{ display: 'flex', border: `1px solid ${c.border}`, borderRadius: 6, overflow: 'hidden' }}>
+              <button
+                onClick={() => setEditorMode('visual')}
+                style={{
+                  padding: '3px 10px', fontSize: 11, fontWeight: 600,
+                  border: 'none', cursor: 'pointer',
+                  background: editorMode === 'visual' ? c.accent : 'transparent',
+                  color: editorMode === 'visual' ? '#fff' : c.muted,
+                }}
+              >✏️ Visual</button>
+              <button
+                onClick={() => setEditorMode('code')}
+                style={{
+                  padding: '3px 10px', fontSize: 11, fontWeight: 600,
+                  border: 'none', cursor: 'pointer', borderLeft: `1px solid ${c.border}`,
+                  background: editorMode === 'code' ? c.accent : 'transparent',
+                  color: editorMode === 'code' ? '#fff' : c.muted,
+                }}
+              >&lt;/&gt; Code</button>
+            </div>
+          )}
+          {selectedFile && (
             <button
               onClick={saveFile}
               disabled={saving || !dirty}
@@ -284,8 +310,13 @@ export function EditorView() {
               <p style={{ fontSize: 12, color: c.textDim, marginTop: 8 }}>Support: MDX, frontmatter, JSX components</p>
             </div>
           )}
-          {selectedFile && !loading && (
-            <CodeMirrorEditor value={content} onChange={handleEditorChange} dark={darkMode} />
+          {selectedFile && !loading && editorMode === 'code' && (
+            <div style={{ height: '100%', overflow: 'auto' }}>
+              <CodeMirrorEditor value={content} onChange={handleEditorChange} dark={darkMode} />
+            </div>
+          )}
+          {selectedFile && !loading && editorMode === 'visual' && (
+            <TipTapVisual content={content} onChange={handleEditorChange} dark={darkMode} />
           )}
         </div>
 
