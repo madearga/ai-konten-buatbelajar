@@ -1,0 +1,20 @@
+{
+  "title": "Panduan AI Content Creation",
+  "pages": [
+    "index",
+    "latar-belakang",
+    "platform-comparison",
+    "---",
+    "platform-ugc",
+    "platform-video",
+    "platform-image",
+    "---",
+    "workflow-ugc",
+    "workflow-branded",
+    "workflow-comfyui",
+    "---",
+    "tools-setup",
+    "best-practices",
+    "referensi"
+  ]
+}
