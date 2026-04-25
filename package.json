@@ -1,0 +1,12 @@
+{
+  "name": "ai-content-guide",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "dev": "echo 'This is a documentation project. Use any static site generator.'"
+  },
+  "description": "Panduan lengkap AI Content Creation A-Z untuk content team",
+  "keywords": ["AI", "content creation", "UGC", "Midjourney", "Sora 2", "ComfyUI", "Flux", "Seedance"],
+  "author": "Madearga",
+  "license": "MIT"
+}

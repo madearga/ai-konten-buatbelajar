@@ -1,0 +1,198 @@
+---
+title: Platform Image AI — Deep Dive
+description: Deep dive platform AI untuk image generation — Midjourney, Flux, Grok Imagine, Dreamina, dan ComfyUI image workflows
+---
+
+import { Callout, Steps, Tab, Tabs } from 'fumadocs-ui/components';
+
+# Platform Image AI — Deep Dive
+
+## Image AI — Fondasi Content Creation
+
+Image generation adalah **langkah pertama** di hampir semua workflow AI content. Karakter, product shots, backgrounds, storyboards — semuanya mulai dari image.
+
+---
+
+## Midjourney v7
+
+<Tabs items={['Overview', 'Prompt Guide', 'Use Cases']}>
+  <Tab>
+    ### Gold Standard Image AI
+    
+    **Midjourney** tetap menjadi benchmark untuk kualitas image generation.
+    
+    **Kelebihan:**
+    - ✅ Kualitas artistik tertinggi — "look" khas Midjourney
+    - ✅ Style sangat konsisten — brand tone mudah dijaga
+    - ✅ Parameter control detail (AR, style, chaos, quality)
+    - ✅ Community besar — banyak reference dan prompt library
+    
+    **Kekurangan:**
+    - ❌ Discord-only interface (belum ada proper web UI)
+    - ❌ Tidak bisa local/self-host
+    - ❌ Text dalam image masih kurang akurat
+    
+    **Harga:** $10/bln (Basic) / $30/bln (Standard) / $60/bln (Pro)
+  </Tab>
+  <Tab>
+    ### Prompt Guide Midjourney
+    
+    Struktur prompt terbaik:
+    
+    ```
+    [subject], [action/pose], [environment], 
+    [lighting], [camera angle], [style/mood] 
+    --ar 16:9 --style raw --q 2
+    ```
+    
+    **Parameter penting:**
+    - `--ar` — aspect ratio (16:9, 9:16, 1:1)
+    - `--style raw` — less "Midjourney style", lebih photorealistic
+    - `--q 2` — higher quality
+    - `--s 250` — stylize amount
+    - `--no [element]` — negative prompt
+    
+    **Contoh untuk product shot:**
+    ```
+    premium skincare bottle on marble surface, 
+    soft golden hour lighting, shallow depth of field, 
+    luxury aesthetic, photorealistic product photography 
+    --ar 4:5 --style raw --q 2
+    ```
+  </Tab>
+  <Tab>
+    ### Use Cases untuk Content Team
+    
+    | Use Case | Cara | Output |
+    |----------|------|--------|
+    | **Product shots** | Product image sebagai reference + style | Brand-ready visuals |
+    | **Storyboard** | Scene-by-scene prompts | Pre-visualisasi video |
+    | **Social media** | Batch generate dengan style konsisten | Feed content |
+    | **Concept art** | Moodboard exploration | Design exploration |
+    | **Background** | Environment prompts | Compositing layers |
+  </Tab>
+</Tabs>
+
+---
+
+## Flux (by Black Forest Labs)
+
+<Tabs items={['Overview', 'Variants', 'Local Setup']}>
+  <Tab>
+    ### Realistic & Fast — Bisa Lokal
+    
+    **Flux** dari Black Forest Labs (tim di balik Stable Diffusion) menawarkan image generation **realistic, cepat, dan bisa dijalankan lokal**.
+    
+    **Kelebihan:**
+    - ✅ **Gratis** jika dijalankan lokal
+    - ✅ Photorealism sangat tinggi (Flux Pro)
+    - ✅ Text dalam image akurat
+    - ✅ Speed sangat cepat (~5 detik per gambar)
+    - ✅ Integrasi dengan ComfyUI
+    
+    **Kekurangan:**
+    - ❌ Butuh GPU untuk lokal (8GB+ VRAM)
+    - ❌ Flux Pro (terbaik) berbayar via API
+    - ❌ Komunitas lebih kecil dari Midjourney
+    
+    **Harga:** Free (Flux Schnell/Dev lokal) / $0.03-0.06 per image (API)
+  </Tab>
+  <Tab>
+    ### Varian Flux
+    
+    | Varian | Kualitas | Speed | VRAM | Harga |
+    |--------|----------|-------|------|-------|
+    | **Flux Schnell** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 8GB | Free |
+    | **Flux Dev** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 12GB | Free |
+    | **Flux Pro** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | API only | $0.03-0.06/img |
+    
+    **Rekomendasi:** Flux Dev lokal untuk produksi harian, Flux Pro API untuk final output premium.
+  </Tab>
+  <Tab>
+    ### Quick Local Setup (ComfyUI)
+    
+    <Steps>
+    
+    #### Install ComfyUI
+    ```bash
+    git clone https://github.com/comfyanonymous/ComfyUI
+    cd ComfyUI
+    pip install -r requirements.txt
+    ```
+    
+    #### Download Flux Model
+    Download `flux1-dev.safetensors` dari HuggingFace → taruh di `models/checkpoints/`
+    
+    #### Jalankan
+    ```bash
+    python main.py
+    ```
+    Buka `http://localhost:8188` di browser.
+    
+    #### Load Flux Workflow
+    Import default Flux workflow → sesuaikan prompt → generate.
+    
+    </Steps>
+  </Tab>
+</Tabs>
+
+---
+
+## Grok Imagine
+
+**Image generation dari X (Twitter)** — cepat dan included dalam X Premium+.
+
+- **Kelebihan:** Included dalam subscription X, continuous improvement, style unik
+- **Kekurangan:** Terbatas pada ekosistem X, tidak ada API standalone
+- **Harga:** Included in X Premium+ ($16/bln)
+- **Best for:** Quick image generation, X/Twitter content
+
+**Referensi @IamEmily2050:** Menggunakan Grok Imagine untuk image generation — "Grok Imagine, every day new improvements, and this is still 0.1 Beta" (2.3M impressions). Emily juga berbagi prompt JSON untuk Grok Imagine.
+
+---
+
+## Dreamina (ByteDance)
+
+**Free entry-level** image + video generation.
+
+- **Kelebihan:** **Gratis** (tier basic), poster design, image generation, mudah dipakai
+- **Kekurangan:** Kualitas di bawah Midjourney/Flux, kustomisasi terbatas
+- **Harga:** Free (basic) / premium available
+- **Best for:** Entry-level, poster/social media quick content, tim yang baru mulai
+
+---
+
+## ComfyUI Image Workflows
+
+### Consistent Character Workflow
+
+Workflow ini memungkinkan kamu membuat **karakter yang sama** di berbagai pose, outfit, dan scene.
+
+**Referensi:** Mickmumpitz — "Create HYPERREALISTIC Consistent AI Characters" (512K views)
+
+<Steps>
+
+### Siapkan Dataset
+Kumpulkan 15-25 foto referensi karakter — berbagai angle, pencahayaan, dan ekspresi.
+
+### Train LoRA
+Gunakan tools seperti Kohya atau OneTrainer untuk train LoRA dari dataset. ~30 menit di RTX 3090.
+
+### Generate dengan LoRA
+Di ComfyUI, load model + LoRA → generate karakter konsisten dalam scene apapun.
+
+### Face Swap (Opsional)
+Untuk close-up shot, gunakan face swap node (ReActor / FaceID) untuk konsistensi maksimal.
+
+</Steps>
+
+---
+
+<Callout type="info" title="Rekomendasi Image AI">
+  **Untuk tim content kami:**
+  
+  - **Brand visuals premium** → Midjourney (kualitas + style)
+  - **Produksi massal / lokal** → Flux Dev via ComfyUI (gratis + cepat)
+  - **Quick & free** → Dreamina atau Grok Imagine
+  - **Consistent character** → ComfyUI + LoRA training
+</Callout>

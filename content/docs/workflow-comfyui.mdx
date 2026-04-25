@@ -1,0 +1,282 @@
+---
+title: Workflow ComfyUI — Hands-On
+description: Tutorial ComfyUI dari install hingga custom workflows — consistent character, face swap, dan video generation
+---
+
+import { Callout, Steps, Tab, Tabs } from 'fumadocs-ui/components';
+
+# Workflow ComfyUI — Hands-On
+
+## Apa itu ComfyUI?
+
+**ComfyUI** adalah **node-based AI workflow engine** — gratis, open-source, dan yang paling powerful untuk AI content creation. Kalau platform lain itu "template", ComfyUI itu "kanvas kosong" — kamu bangun workflow sendiri.
+
+<Callout type="warning" title="Learning Curve">
+ComfyUI memang **sulit di awal**. Tapi begitu paham konsep dasar, kamu bisa membuat apapun. Ikuti tutorial ini step-by-step.
+</Callout>
+
+**Referensi utama:**
+- **fofr** — ComfyUI expert, workflow sharing, AI art experiments (YouTube)
+- **Mickmumpitz** — "Create HYPERREALISTIC Consistent AI Characters" (512K views), ComfyUI full masterclass
+- **Yaroflasher** — Lesson 3 & 4: ComfyUI Image & Video Workflows (THE COMPLETE AI COURSE 2026)
+
+---
+
+## Installation
+
+<Tabs items={['Windows', 'Mac (Apple Silicon)', 'Cloud (RunPod)']}>
+  <Tab>
+    ### Windows (NVIDIA GPU)
+    
+    <Steps>
+    
+    #### Prerequisites
+    - Python 3.10+
+    - NVIDIA GPU dengan CUDA (8GB+ VRAM recommended)
+    - Git
+    
+    #### Install
+    ```bash
+    git clone https://github.com/comfyanonymous/ComfyUI
+    cd ComfyUI
+    python -m venv venv
+    .\venv\Scripts\activate
+    pip install -r requirements.txt
+    ```
+    
+    #### Download Model
+    Download checkpoint (contoh: Flux Dev) → taruh di `models/checkpoints/`
+    
+    #### Jalankan
+    ```bash
+    python main.py
+    ```
+    Buka `http://127.0.0.1:8188`
+    
+    </Steps>
+  </Tab>
+  <Tab>
+    ### Mac (Apple Silicon M1/M2/M3/M4)
+    
+    <Steps>
+    
+    #### Install
+    ```bash
+    git clone https://github.com/comfyanonymous/ComfyUI
+    cd ComfyUI
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    ```
+    
+    #### PyTorch MPS
+    Pastikan PyTorch support MPS:
+    ```bash
+    pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+    ```
+    
+    #### Jalankan
+    ```bash
+    python main.py --force-fp16
+    ```
+    
+    **Note:** Mac GPU shared memory — performa lebih lambat dari NVIDIA dedicated GPU. Untuk video generation, disarankan cloud.
+    
+    </Steps>
+  </Tab>
+  <Tab>
+    ### Cloud (RunPod / Vast.ai)
+    
+    <Steps>
+    
+    #### Pilih Template
+    Di RunPod, pilih **ComfyUI template** — sudah pre-installed dengan model umum.
+    
+    #### GPU Selection
+    - **RTX 3090** ($0.30-0.50/hr) — cukup untuk image workflows
+    - **RTX 4090 / A6000** ($0.60-1.00/hr) — recommended untuk video
+    - **A100** ($1.20-1.50/hr) — terbaik, untuk heavy video
+    
+    #### Connect
+    Akses via browser (RunPod auto-setup) atau SSH tunnel.
+    
+    #### Save Workflows
+    Selalu **save workflow** setelah session — cloud instance bisa terminate kapan saja.
+    
+    </Steps>
+  </Tab>
+</Tabs>
+
+---
+
+## Konsep Dasar ComfyUI
+
+### Node System
+
+ComfyUI menggunakan **nodes** yang dihubungkan dengan **wires**:
+
+```
+[Load Checkpoint] → [CLIP Text Encode (Prompt)] → [KSampler] → [VAE Decode] → [Save Image]
+                          ↑                              ↑
+                    [Positive Prompt]            [Negative Prompt]
+```
+
+**Node types dasar:**
+- **Checkpoint Loader** — load model AI
+- **CLIP Text Encode** — convert text prompt ke format yang dimengerti model
+- **KSampler** — sampling/generation process (steps, CFG, sampler)
+- **VAE Decode** — convert latent ke image visible
+- **Save/Preview Image** — output
+
+### Parameters Penting
+
+| Parameter | Fungsi | Rekomendasi |
+|-----------|--------|-------------|
+| **Steps** | Iterasi sampling | 20-30 (image), 15-25 (video) |
+| **CFG** | Seberapa ketat mengikuti prompt | 3.5-7 |
+| **Sampler** | Algoritma sampling | euler_ancestral / dpmpp_2m |
+| **Scheduler** | Noise scheduling | normal / karras |
+| **Seed** | Random seed | -1 (random) atau fixed untuk reproducible |
+
+---
+
+## Workflow 1: Image Generation Dasar
+
+<Steps>
+
+### Load Model
+Tambah node **Load Checkpoint** → pilih model (contoh: `flux1-dev.safetensors`)
+
+### Tulis Prompt
+- **Positive:** Deskripsikan apa yang kamu mau
+- **Negative:** Deskripsikan apa yang TIDAK kamu mau
+
+### Set Parameters
+KSampler: Steps 25, CFG 4.5, Sampler euler_ancestral, Scheduler normal
+
+### Generate
+Queue prompt → tunggu ~5-30 detik → preview hasil
+
+### Iterate
+Ubah prompt, seed, atau parameters → generate ulang sampai puas
+
+</Steps>
+
+---
+
+## Workflow 2: Consistent Character
+
+**Referensi:** Mickmumpitz — "HYPERREALISTIC Consistent AI Characters" (512K views, 9 chapters)
+
+<Steps>
+
+### Siapkan Dataset
+15-25 foto karakter referensi — berbagai angle, ekspresi, pencahayaan. Semua harus **wajah yang sama**.
+
+### Train LoRA
+Gunakan node **Kohya/OneTrainer** di ComfyUI:
+1. Load dataset
+2. Set training parameters (learning rate, steps, batch)
+3. Train ~30 menit (RTX 3090)
+4. Save LoRA file
+
+### Load LoRA
+Tambah node **Load LoRA** → hubungkan ke checkpoint → set strength 0.7-1.0
+
+### Generate Karakter
+Tulis prompt dengan deskripsi karakter + scene. LoRA memastikan wajah konsisten.
+
+### Face Swap (Opsional)
+Untuk konsistensi maksimal di close-up:
+1. Load source face image
+2. Tambah node **ReActor** atau **IP-Adapter FaceID**
+3. Hubungkan ke generated image
+4. Face swap otomatis
+
+</Steps>
+
+---
+
+## Workflow 3: Face Swap & Outfit Change
+
+**Referensi:** Yaroflasher — "Hyper-Realistic AI Influencers" (Face Swap chapters)
+
+<Tabs items={['Face Swap', 'Outfit Change']}>
+  <Tab>
+    ### Face Swap dengan ReActor
+    
+    1. Load **source image** (wajah target)
+    2. Load **target image** (tubuh/scene)
+    3. Tambah node **ReActor Fast Face Swap**
+    4. Hubungkan source face → ReActor ← target image
+    5. Set face detection threshold
+    6. Generate → wajah source di tubuh target
+    
+    **Tips:** Gunakan face detection index jika ada multiple faces. Set `swap_index` untuk pilih wajah mana.
+  </Tab>
+  <Tab>
+    ### Outfit Change
+    
+    1. Load karakter image
+    2. Load **garment image** (outfit yang diinginkan)
+    3. Gunakan **IDM-VTON** atau **IP-Adapter** nodes
+    4. Hubungkan: karakter + garment → inpainting
+    5. Prompt: "wearing [deskripsi outfit]"
+    6. Generate → karakter dengan outfit baru
+    
+    **Referensi:** Yaroflasher — "Outfit Change Basics" dan "Outfit Layering" chapters
+  </Tab>
+</Tabs>
+
+---
+
+## Workflow 4: Video Generation
+
+**Referensi:** Mickmumpitz — "Build your own AI MOVIES shot by shot" (156K views), Ai Verse — "WAN 2.2 Long Video Generation" (125K views)
+
+<Steps>
+
+### Load Video Model
+Tambah node **Load Checkpoint** → pilih video model (WAN 2.2, CogVideoX, dll)
+
+### Input Image + Motion Prompt
+- **Image:** Gunakan frame dari workflow image sebagai starting frame
+- **Prompt:** Deskripsikan motion yang diinginkan
+
+### Set Video Parameters
+- **Frames:** 16-49 frames
+- **FPS:** 8-16
+- **Resolution:** 512x512 atau 768x768
+
+### Generate
+Video generation memakan waktu **2-10 menit** tergantung model dan hardware.
+
+### Post-Process
+- **Upscale** jika perlu (Real-ESRGAN)
+- **Frame interpolation** untuk smooth motion (FILM / RIFE)
+- **Color grading** di editor video
+
+</Steps>
+
+---
+
+## ComfyUI Tips & Resources
+
+<Callout type="info" title="Tips ComfyUI">
+  - **Save workflow** secara rutin — export sebagai JSON
+  - **Gunakan ComfyUI Manager** — package manager untuk install custom nodes dengan mudah
+  - **Cari workflows** di ComfyUI Workflows Blog dan CivitAI
+  - **Join komunitas** — Discord ComfyUI sangat aktif dan helpful
+  - **Mulai dari template** — jangan buat dari nol, import workflow yang sudah ada lalu modifikasi
+</Callout>
+
+### Custom Nodes yang Wajib
+
+| Node | Fungsi | Install |
+|------|--------|---------|
+| **ComfyUI Manager** | Package manager | `git clone` di custom_nodes |
+| **ReActor** | Face swap | Via Manager |
+| **IP-Adapter** | Style/face reference | Via Manager |
+| **ControlNet** | Pose/edge/control | Via Manager |
+| **WAN 2.2 nodes** | Video generation | Via Manager |
+| **InfiniteTalk** | Lip sync | Via Manager |
