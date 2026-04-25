@@ -381,14 +381,56 @@ Polish warna, sync audio, export
 
 ---
 
+### Veo First-Frame / Last-Frame Method ($6 Budget)
+
+**Pipeline:** Image A (first frame) → Veo generates motion → Image B (last frame)
+
+Prompt contoh yang di-reuse dari Kling:
+```text
+Woman sinking into pink slime
+```
+```text
+Woman sinking into the pink swamp completely
+```
+```text
+Hands emerge from sand
+```
+
+**Cara kerja:** "First frame, last frame, first frame, last frame. That's literally how the entire video is made."
+
+- Generate multiple variations, filter yang jelek
+- Pakai **Veo 3.1** — 6x lebih murah di FlashBoards
+- Total: **56 clips seharga ~$6** vs versi Kling yang **$115**
+
+---
+
+### DaVinci Resolve Speed Ramping
+
+**Shortcut utama:** `Cmd+R` (Retime Controls)
+
+**Workflow:**
+1. Buka Retime Controls → klik speed line → Add Speed Point
+2. Speed Point = keyframe untuk waktu — "Play normally here, speed up here, slow down right before the transition"
+3. Klik keyframe → atur **easing curve** (bagaimana speed ramps in/out)
+
+**Tips Yaroflasher:**
+- "The worst thing you can do is let that speed change happen instantly"
+- Accelerate ke 800% untuk sembunyikan artifacts
+- "Speed hides micro artifacts. Motion distracts attention. The brain fills in the gap"
+- Place speed changes **on beats** — "You're not editing clips anymore. You're editing energy"
+- "Bad generation plus good timing often looks better than great generation plus bad timing"
+
+---
+
 ### Acceleration Trick (500-800%)
 
-**Prompt insight:** "Accelerating AI video by 500-800% not only creates rhythm but also hides micro-glitches and melted pixels."
-
-**Cara kerja:**
-- Speed up video 5-8x lipat
-- Glitch micro yang tadinya terlihat → hilang karena terlalu cepat
-- Hasil: rhythm yang dinamis + visual yang terlihat lebih clean
+**Penggunaan Yaroflasher:**
+- 5x, 10x, bahkan lebih — kemudian snap back ke normal speed
+- **Rhythm:** Fast motion = tension, normal speed = release
+- **Imperfections:** Glitch kecil tidak terlihat saat dipercepat
+- **Realism:** "Real life is not smooth. Acceleration makes these moments feel more natural"
+- Kadang sengaja **tidak smooth** — roughness bikin terasa raw, physical
+- **Selective:** Hanya percepat bagian yang butuh energi (misal: falling moment)
 
 ---
 
@@ -454,7 +496,115 @@ explosions in background, anime action style
 
 ---
 
+### "One Shot Sequence" Magic Line
+
+**Prompt kunci:**
+```text
+Should be one shot sequence without camera switches
+```
+
+**Efek:** "Instead of hard cuts, you get constant zooms, smooth camera motion, uninterrupted flow. The camera never jumps. It flows."
+
+**Prompt lengkap untuk action:**
+```text
+Movie anime style action sequence. [describe what's happening in scene].
+Should be one shot sequence without camera switches.
+```
+
+**Tips:** "Same prompt, different generations, different results. Some were okay, some were amazing. Some had unexpected anime-like motion. Those accidents are gold."
+
+---
+
+### Ninja Action Storyboard
+
+**Workflow:**
+1. Built separate storyboard untuk action
+2. Add ninjas — "More characters = more motion = more energy"
+3. First version: few ninjas → Second: more → Third: "Okay, now it's a party"
+4. Generate banyak, cherry-pick yang terbaik
+5. "Quantity is your friend. Quality comes from selection."
+
+**Prompt:**
+```text
+Movie anime style action sequence with ninjas attacking the main character.
+Should be one shot sequence without camera switches.
+```
+
+---
+
 ## Lesson 7 — Final Promo Breakdown
+
+### Creativity Framework (Pendekatan Yaroflasher)
+
+<Steps>
+
+### Step 1: Character
+Mulai dari karakter — bisa real actor, stylized, cartoon, atau anime
+
+### Step 2: Layers Tambahkan Bertahap
+- **Clothing** — outfit defines vibe
+- **Poses & body language** — ekspresi tanpa kata
+- **Facial expression** — emotion anchor
+- **Makeup & hairstyle** — small details, big difference
+
+### Step 3: Cinematic Layers
+- Lighting, colors, environment, props
+- "Emotion doesn't live only in the face. It lives in shadows, color, contrast, atmosphere"
+
+### Step 4: Visual Enhancement
+- Unusual camera angles
+- Unexpected framing
+- Graphic elements, design overlays
+- Visual effects — kadang semua sekaligus
+
+</Steps>
+
+**Pesan kunci:** "Creativity is not about adding random effects. It's about choosing which tools to use and which ones to ignore. Sometimes one subtle camera move is stronger than 10 effects."
+
+---
+
+### Reference & Mood Board Method
+
+**References BUKAN cheating:** "They're how creativity actually works."
+
+1. **Historical references** — iconic photographs, legendary paintings, classic compositions
+   - Jangan cuma "Wow, cool" — tanya **"Why does this work?"** (composition? timing? contrast? emotion?)
+
+2. **Mood boards** — "Always, not because you're lost, but because you want clarity"
+   - Mix: real videos, animated shots, 3D stylized, chaos
+   - "Your brain suddenly goes: 'Ah, okay, now I get it.'"
+
+3. **Functional storyboards** — bukan perfect Pixar storyboard
+   - Create frame → attach audio/dialogue → you already know what should happen
+   - "You're not generating random shots anymore. You're designing a sequence."
+
+---
+
+### Burning Man Music Video (Sora Practice)
+
+**Prompt approach:** "Most of my prompts were super simple. Fashion, cinematic, music video, rare camera angles, interesting locations. No magic spells, just clear intent."
+
+**Workflow:**
+1. Generate banyak storyboard — "Most were trash, some were meh. A few were fire."
+2. Filter aggressively, keep only good stuff
+3. Intro = abstract, surreal — "Not watching a vlog"
+4. Jika error "real people can't be generated" → turn into sketch dulu dengan Nano Banana (90% kasus tidak perlu)
+5. Add Cameo + 4K storyboards
+
+**Quick test trick:**
+```text
+Generate 25-second clips. Four clips = ~1.5 minutes material.
+Instantly understand: does this work or not?
+If yes → regenerate clean 15-second shots.
+If not → saved time and money.
+```
+
+**Prompts untuk surreal transitions:**
+```text
+List of effects, camera moves, distortions, light leaks, surreal transitions
+```
+
+---
 
 ### Product Promo Pipeline (Fizz Pop / Lightning Bolt)
 
@@ -474,15 +624,87 @@ from a thundercloud. It's golden, it's fizzy, and it'll put the zoom
 back in your whiskers. Lightning Bolt sparkling energy soda. Taste the surge.
 ```
 
+**Prompt untuk short product ad:**
+```text
+Meet Mo, the tiny mouse with a gigantic thirst. One sip of ZAP POP
+and WAH — FLAVOR OVERLOAD. GOLDEN, FIZZY, and packed with spark.
+Pour it. Drink it. FEEL THE BUZZ. ZAP POP.
+SPARK. SIP. ZOOM. Available everywhere. Good vibes sold.
+```
+
 ---
 
-### Quick Edit Workflow
+### Quick Edit Workflow (FlashBoards AutoSplit)
 
 1. **AutoSplit** → detect cuts otomatis
 2. **Keep/Remove** → audition seperti playlist
 3. **Video Restoration** → cleanup + sharpen
 4. **Topaz 4K** → final upscale
 5. **Export** → deliverable ke klien
+
+"Speedrunning an edit, but the result still looks professional."
+
+---
+
+### Face Collage Technique
+
+**Workflow:**
+1. Generate/kumpulkan beberapa close-up portraits — different angles, expressions, moods
+2. Combine jadi single collage/grid
+3. Cari reference collage di Pinterest (strong style)
+4. Feed ke Nano Banana:
+
+```text
+Make this image in the style of the second image
+```
+
+**Keuntungan:** Satu shot → multiple dynamic beats tanpa generate 10 scene berbeda.
+
+---
+
+### Camera Movement Workflow (Restyle + Motion Blend)
+
+**Pipeline:**
+1. Mulai dari base video (defines character motion + camera rhythm)
+2. Ambil satu frame dari video → restyle pakai Nano Banana (change lighting, materials, visual language)
+3. Frame yang sudah di-restyle = character image baru
+4. Feed ke Camera Movement workflow: reference video = motion control, character image = style control
+5. Result: **Same motion, same camera behavior, new visual identity**
+
+**Contoh:** Base video karakter bergerak → restyle → camera movement workflow → sleeve tetap bergerak natural karena motion preserved.
+
+**Kapan pakai:**
+- Fast-paced sequences — stack multiple style versions (realistic → stylized → graphic → abstract)
+- Cut antar versions → motion stays consistent, visual language keeps changing
+- "Rhythm is everything"
+- Open-source, jauh lebih murah dari generate ulang
+
+---
+
+### Style Layering (Nano Banana Zoom)
+
+**Workflow berulang:**
+1. Generate shot → push lebih jauh dengan Nano Banana zoom
+2. Change style → exaggerate texture
+3. "Same motion, different feeling"
+4. Camera movement → swap style lagi → stack variations
+5. "One simple idea turns into multiple dynamic beats"
+
+**Prompt:**
+```text
+Man melts and falls to the floor like slime
+```
+
+---
+
+### Explosion Transition
+
+**Workflow:**
+1. Di DaVinci, pause di titik transisi
+2. `Grab Still` → export frame sebagai image
+3. Feed frame ke **Veo** sebagai starting point
+4. Generate next shot dari frame tersebut
+5. Visual: "One scene explodes and out of that explosion, the next scene is born"
 
 ---
 
@@ -496,12 +718,15 @@ back in your whiskers. Lightning Bolt sparkling energy soda. Taste the surge.
 | Lip sync (Veo) | ~$3.00 |
 | Video restoration | ~$2.00 |
 | Audio separation + mix | ~$3.00 |
-| **Total** | **~$14.50** |
+| **Total (Music Video)** | **~$14.50** |
+
+**Veo first-frame/last-frame version:** ~$6 (56 clips)
+**Kling version yang sama:** ~$115
 
 <Callout type="info" title="Perbandingan Budget">
 Jika diproduksi traditional: **$50,000 - $100,000** (locations, actors, gear, VFX, post-production)
 
-Dengan AI pipeline: **~$14.50** — "You're doing it with ideas, workflows, and smart decisions."
+Dengan AI pipeline: **~$6-14.50** — "You're doing it with ideas, workflows, and smart decisions."
 </Callout>
 
 ---
@@ -533,34 +758,54 @@ Dengan AI pipeline: **~$14.50** — "You're doing it with ideas, workflows, and 
 |---|--------|----------|
 | 10 | `[Describe mood, energy, emotion] + [paste exact spoken text]` | Veo lip-sync template |
 
+### Video Transitions & Motion
+
+| # | Prompt | Use Case |
+|---|--------|----------|
+| 11 | `Woman sinking into pink slime` | Veo transition |
+| 12 | `Woman sinking into the pink swamp completely` | Veo transition |
+| 13 | `Hands emerge from sand` | Veo transition |
+| 14 | `Man melts and falls to the floor like slime` | Surreal motion |
+| 15 | `Should be one shot sequence without camera switches` | **Magic line** — no hard cuts |
+| 16 | `Movie anime style action sequence with ninjas attacking the main character. Should be one shot sequence without camera switches.` | Anime action |
+| 17 | `List of effects, camera moves, distortions, light leaks, surreal transitions` | Surreal intro |
+
+### Face Collage & Style Transfer
+
+| # | Prompt | Use Case |
+|---|--------|----------|
+| 18 | `Make this image in the style of the second image` | Face collage style transfer |
+
 ### Product Promo
 
 | # | Prompt | Use Case |
 |---|--------|----------|
-| 11 | `Mo the mouse with a thirst for fun. One sip of the new Fizz Pop and things get bubbly...` | Beverage UGC ad |
-| 12 | `Lightning Bolt. Sparkling energy soda. One sip hits like a high five from a thundercloud...` | Energy drink ad |
-| 13 | `Meet Mo, the tiny mouse with a gigantic thirst. One sip of ZAP POP and WAH FLAVOR OVERLOAD...` | Short product ad |
+| 19 | `Mo the mouse with a thirst for fun. One sip of the new Fizz Pop and things get bubbly...` | Beverage UGC ad |
+| 20 | `Lightning Bolt. Sparkling energy soda. One sip hits like a high five from a thundercloud...` | Energy drink ad |
+| 21 | `Meet Mo, the tiny mouse with a gigantic thirst. One sip of ZAP POP and WAH FLAVOR OVERLOAD...` | Short product ad |
 
 ### Character & Story
 
 | # | Prompt | Use Case |
 |---|--------|----------|
-| 14 | `Make man in first image riding motorbike as woman in second image` | Character scene generation |
-| 15 | `Create a female character matching the style of @image 1, sitting behind the man on the motorcycle` | Partner character |
-| 16 | `Extreme close-up of the character's face, dramatic anime lighting, same style as @image 1` | Close-up shot |
-| 17 | `Wide shot of motorcycle chase scene, explosions in background, anime action style` | Action wide shot |
+| 22 | `Make man in first image riding motorbike as woman in second image` | Character scene generation |
+| 23 | `Create a female character matching the style of @image 1, sitting behind the man on the motorcycle` | Partner character |
+| 24 | `Extreme close-up of the character's face, dramatic anime lighting, same style as @image 1` | Close-up shot |
+| 25 | `Wide shot of motorcycle chase scene, explosions in background, anime action style` | Action wide shot |
 
 ### Transformation (Kling Omni)
 
 | # | Prompt | Use Case |
 |---|--------|----------|
-| 18 | `Change black t-shirt to striped white and black t-shirt` | Outfit transformation |
+| 26 | `Change black t-shirt to striped white and black t-shirt` | Outfit transformation |
 
 ### Utility
 
 | # | Prompt | Use Case |
 |---|--------|----------|
-| 19 | `Take the outfit from the second image and apply it to the first` | Outfit transfer |
+| 27 | `Take the outfit from the second image and apply it to the first` | Outfit transfer |
+| 28 | `Make realistic` | Realism transfer |
+| 29 | `Man singing / man talking / man rapping` | Music video basic |
 
 ---
 
@@ -582,6 +827,55 @@ Dengan AI pipeline: **~$14.50** — "You're doing it with ideas, workflows, and 
 
 ---
 
+## Higgsfield Comparison
+
+<Callout type="warning" title="Higgsfield Performance">
+"It's been almost an hour and Higgsfield is still generating, still in progress, still thinking, still meditating, still writing a novel in the background."
+
+- Higgsfield membutuhkan waktu sangat lama dibanding Sora/Kling/Veo
+- Bahkan memblokir generation cartoon mouse dengan label **NSFW**
+- "Some platforms look shiny. Some platforms actually let you produce."
+</Callout>
+
+---
+
+## Lesson 6 — AI Anime Trailer (Burning Man Music Video)
+
+### Abstract Intro Technique
+
+**Prompt approach:**
+```text
+Fashion, cinematic, music video, rare camera angles, interesting locations
+```
+
+**Tips:** "I didn't want anything literal. I wanted it abstract, surreal, fragments of emotion, something that feels like you're entering the experience."
+
+**Quick test method:**
+```text
+Generate 25-second clips. Four clips = ~90 seconds of material.
+If it works → regenerate clean 15s shots.
+If not → you just saved time and money.
+```
+
+### Sora Music Video Pricing
+
+- ~30 storyboards generated
+- From each: pick best results
+- Upscale best shots → convert to Sora storyboard
+- Add Cameo + 4K for consistency
+- "Most prompts were super simple. No magic spells, just clear intent."
+
+### Scene Cut Detection (DaVinci)
+
+1. Drop clip ke edit timeline
+2. Scene Cut Detection → auto-split jadi shots
+3. "Some are garbage. Delete. Some are gold. Keep."
+4. Harvest highlights: shot from Video A + shot from Video B + shot from Video C
+
+---
+
 <Callout type="success" title="Pesan Terakhir Yaroflasher">
-"Tools don't replace creativity, they amplify it. The real core of creativity is ideas, taste, vision, and knowing **why** you're doing something, not just **how**."
+"You don't need perfect prompts. You don't need the newest model. And you definitely don't need to wait until you feel ready. You get better by doing. That's it. No pressure, no perfection, just momentum."
+
+"Everything you saw in this video is not about AI being better than people. It's about **people using AI better**."
 </Callout>
