@@ -287,3 +287,238 @@ Untuk membandingan hasil prompt, gunakan matrix ini:
 6. Generate hasil
 7. Review dan iterasi
 </Callout>
+
+---
+
+## Prompts dari Sirio — "Seedance 2 Just Changed AI UGC Ads"
+
+*Video oleh Sirio (30K views, Apr 2026) — Full breakdown structural vs freestyle prompting untuk UGC ads dengan Seedance 2 di Enhancor.*
+
+<Callout type="info" title="Konsep Utama">
+Seedance 2 UGC mode punya **2 cara prompting**:
+1. **Structural** — Explicit, detail, tiap komponen didefinisikan (subject, action, props, wardrobe, tone)
+2. **Freestyle** — Describe the result you want, model figure out the details
+
+Structural ada 2 format: **Descriptive** (paragraf) dan **Breakdown** (per-line key-value).
+</Callout>
+
+---
+
+### Prompt 1: Structural — Descriptive Format (LED Mask)
+
+```text
+Using @image as a product reference, create a realistic creator-style review video
+featuring a woman wearing the LED mask while it is turned on.
+She's dressed in a soft robe and holding the remote controller in one hand.
+She walks slowly toward the camera while naturally moving her hands as she speaks,
+keeping the remote visible.
+Her expression feels genuine and pleased,
+like she is sharing a product she personally loves.
+And she says, "This LED mask has been a game-changer for me."
+```
+
+**Komponen structural:**
+1. `@image` tag → model tau image mana yang jadi reference
+2. Scene description → siapa, pakai apa, pegang apa
+3. Movement → jalan ke kamera, gerak tangan natural
+4. Lip-sync line → kalimat yang diucapkan
+
+---
+
+### Prompt 2: Structural — Breakdown Format (LED Mask)
+
+```text
+Reference: @image 1 (the LED product)
+Subject: female creator
+Setting: cozy night, in bedroom or apartment room
+Wardrobe: soft robe, relaxed at-home look
+Product state: LED mask turned ON, glowing
+Props: remote controller in one hand
+Action: walks slowly toward camera, moves hands naturally while talking
+Tone: genuine, pleased, sharing a product she personally loves
+Dialogue: "This LED mask has been a game-changer for my skin."
+```
+
+**Keuntungan breakdown format:** Setiap komponen terpisah → mudah edit per bagian tanpa ubah semuanya.
+
+---
+
+### Prompt 3: Structural — Timeline Prompting (LED Mask)
+
+```text
+Reference: @image 1 (the LED product)
+Subject: female creator
+Setting: cozy night, in bedroom or apartment room
+Wardrobe: soft robe, relaxed at-home look
+Product state: LED mask turned ON, glowing
+Props: remote controller in one hand
+Tone: genuine, pleased, sharing a product she personally loves
+
+Timeline:
+0-3s: Woman sits comfortably, adjusting the LED mask on her face
+3-6s: She turns to camera, remote visible in hand, begins speaking
+6-9s: Close-up of her face with mask glowing, showing different settings
+9-12s: She demonstrates changing levels with the remote controller
+12-15s: Final shot, she removes mask partially, smiles at camera
+
+Dialogue: "My favorite thing about this mask is how easy it is. I just set it and forget it."
+```
+
+**Hasil Sirio:** "It nails the timestamps and follows them almost exactly as instructed, which is very impressive."
+
+---
+
+### Prompt 4: Freestyle — Minimal Context (LED Mask)
+
+```text
+An influencer trying an LED mask and talking about the different settings,
+how she uses it every night, and how easy it is to control.
+```
+
+**Hasil:** Model paham context — LED mask nyala, remote visible, script natural. Tapi **mouth area ikut bergerak** (seharusnya rigid).
+
+---
+
+### Prompt 5: Freestyle — Shampoo Review
+
+```text
+A woman influencer reviewing the detox shampoo in @image 1
+for women who want to deal with hair buildup.
+```
+
+**Hasil:** "Very decent text consistency. Source image is upside down but it still understood correctly and kept the same gel consistency."
+
+---
+
+### Prompt 6: Structural — Protein Bar with Real Face Reference
+
+```text
+Using @image 1 as the influencer face reference and @image 2 as the product reference,
+create a natural UGC review video.
+The influencer holds the protein bar, takes a bite,
+and shares her honest thoughts with excitement.
+Keep the product label clearly visible and readable.
+She says: "28g of protein, which is insane for only 150 calories and 0g of sugar."
+```
+
+**Fitur:** Upload foto influencer ASLI → AI generate video dengan wajah konsisten.
+
+---
+
+### Prompt 7: Freestyle — ASMR Product Review (Phone Case)
+
+```text
+ASMR product review of a phone case that holds a lip gloss in the back.
+```
+
+**Hasil:** Hook kuat, tapi ada "random text" dan "squeezing the entire phone" — freestyle kadang generate physics yang tidak masuk akal.
+
+<Callout type="warning" title="Warning dari Sirio">
+"When using freestyle prompting, you still need to be careful with products because **the looser the prompt, the more room the model has to improvise**, and that is usually where the **strange product interactions** start to show up."
+</Callout>
+
+---
+
+### Prompt 8: Structural — Green Screen Ad (Mid-Day Squares)
+
+```text
+Reference: @image 1 (Mid-Day Squares product)
+Setting: green screen background with product image displayed behind creator
+Subject: female creator, casual outfit
+Action: standing in front of green screen, holding product, talking to camera
+Tone: energetic, excited, recommending a favorite snack
+Dialogue: "Mid-Day Squares are literally my favorite midday snack.
+They have 20g of protein and actually taste good."
+Timeline:
+0-3s: Creator appears on screen with product visible behind
+3-6s: She picks up the product, shows it to camera
+6-8s: Takes a bite, reacts with excitement
+```
+
+**Tip Sirio:** Gunakan 7-8 detik bukan 15 detik untuk green screen — biar pacing tidak terlalu lambat.
+
+---
+
+### Prompt 9: Structural — Unboxing (Headphones)
+
+```text
+Reference: @image 1 (headphones product)
+Setting: unboxing scene, table or desk background
+Subject: male creator, casual look
+Action: opens packaging, reveals product, tries it on
+Tone: genuine surprise and excitement
+Product state: model imagines the packaging with no reference
+Dialogue: "First off, the build quality. I've been using these for about a week now.
+They are fully wireless but they also come with a wire."
+```
+
+---
+
+### Prompt 10: Structural — App/Software Ad
+
+```text
+Reference: @image 1 (app UI screenshot)
+Setting: casual, creator at desk or couch with phone visible
+Subject: male creator, tech-savvy vibe
+Action: shows phone screen to camera, swipes through app features
+Tone: amazed, sharing a discovery
+Dialogue: "I found the best website that lets you get 100% off
+on any of your Amazon orders. This is insane."
+```
+
+**Note:** "For the most part, the text is very consistent in the frame. There are spelling mistakes, but nothing that post-production cannot fix."
+
+---
+
+### Prompt 11: Freestyle — Lifestyle Campaign (Multi-Input Mood)
+
+```text
+Create a lifestyle commercial for the shirt in @image 1
+using the mood and vibe of @image 2 and @image 3.
+The video should feel cinematic, warm, and aspirational.
+Show the shirt in a real-world lifestyle setting
+— walking outdoors, at a cafe, or relaxing at sunset.
+```
+
+**Fitur:** Upload 3 images — 1 produk + 2 mood reference → AI generate video dengan vibe dari mood images.
+
+---
+
+### Prompt 12: Lip Sync Your Own Voice
+
+```text
+Reference: @image 1 (your AI influencer or real face)
+Mode: Lip Sync
+Audio: Upload your recorded voice clip
+Action: influencer speaks with your exact voice and mouth movements
+Duration: match audio length
+```
+
+**Hasil:** "You can now upload real human faces as your influencer reference. The AI actors will lip-sync almost perfectly."
+
+---
+
+## Comparison: Structural vs Freestyle
+
+| Aspek | Structural | Freestyle |
+|-------|-----------|-----------|
+| **Kontrol** | Tinggi — tiap komponen didefinisikan | Rendah — model improvise |
+| **Konsistensi produk** | 80-90% | 60-70% |
+| **Text pada label** | Lebih konsisten | Kadang ada random text |
+| **Physics/logic** | Lebih masuk akal | Kadang aneh (squeeze phone, dll) |
+| **Effort** | Tinggi — perlu tulis detail | Rendah — 1-2 kalimat cukup |
+| **Best for** | Client work, brand campaign | Testing cepat, social media |
+
+<Callout type="success" title="Rekomendasi Sirio">
+"**Structure your prompts.** Kalau untuk client work, selalu pakai structural. Freestyle cocok untuk testing dan eksplorasi awal."
+</Callout>
+
+---
+
+### Tools yang Dipakai di Video
+
+| Tool | URL | Harga |
+|------|-----|-------|
+| **Enhancor UGC** | app.enhancor.ai/ugc-ads | $0.12/detik (480p), $0.18/detik (720p) |
+| **Enhancor Video Generator** | app.enhancor.ai/video-generator | $0.20/detik (720p) |
+| **PublicAI Community** | skool.com/publicai | Gratis |
