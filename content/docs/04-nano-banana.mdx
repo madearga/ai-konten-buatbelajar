@@ -1,0 +1,172 @@
+---
+title: Character Creation dengan Nano Banana
+description: Cara membuat karakter AI yang konsisten dan realistis menggunakan Nano Banana Pro — dari prompt hingga multi-pose
+---
+
+# Character Creation dengan Nano Banana
+
+## Apa itu Nano Banana Pro?
+
+**Nano Banana Pro** adalah AI model yang menghasilkan gambar karakter **hyper-realistic** — sulit dibedakan dari foto asli. Ini jadi fondasi untuk semua konten AI kamu: UGC ads, branded content, AI influencer.
+
+<Callout type="info" title="Referensi Yaroflasher">
+Lesson 1 dari THE COMPLETE AI COURSE 2026 (2:58 - 43:49) cover FlashBoards + Nano Banana secara lengkap. Juga ada video "Hyper-Realistic AI Influencers in 5 Minutes" dengan 18 chapter detail.
+</Callout>
+
+---
+
+## Cara Akses Nano Banana Pro
+
+Karena kita pakai web-only, akses via:
+
+| Platform | Cara | Biaya |
+|----------|------|-------|
+| **Pixazo** | Daftar → pilih model "nano-banana-pro-2" → tulis prompt | $0.05-0.50/gambar |
+| **fal.ai** | Daftar → cari "nano-banana" → generate | Pay-per-use |
+
+---
+
+## Prompt JSON Structure
+
+Kunci karakter konsisten adalah **prompt terstruktur**. @IamEmily2050 (45.7K followers di X) membagikan format JSON yang bisa langsung dipakai.
+
+### Template: Beauty Character (FMCG/Beauty)
+
+```json
+{
+  "scene": "casual bathroom selfie, soft natural lighting from window",
+  "subject": {
+    "type": "young adult female, Indonesian, 22-26 years old",
+    "hair": "black, long, straight, healthy shine",
+    "skin": "clear, glowing, natural dewy finish",
+    "expression": "genuine smile, eyes slightly squinted, friendly",
+    "pose": "holding skincare bottle at chest height, looking at camera"
+  },
+  "wardrobe": {
+    "top": "white casual t-shirt, clean and simple",
+    "style": "minimalist, everyday look"
+  },
+  "environment": {
+    "location": "modern Indonesian bathroom, clean white tiles",
+    "lighting": "soft window light from left, golden hour warmth",
+    "time": "morning"
+  },
+  "camera": {
+    "type": "smartphone selfie, slight grain",
+    "angle": "slightly above eye level",
+    "distance": "medium close-up, chest up"
+  },
+  "style": "candid, unposed, authentic UGC feel"
+}
+```
+
+### Template: Health/Skincare Testimonial
+
+```json
+{
+  "scene": "cozy bedroom, morning routine aesthetic",
+  "subject": {
+    "type": "young adult female, Southeast Asian, 25-30",
+    "hair": "black, messy bun, casual",
+    "expression": "surprised happy, one hand on cheek",
+    "pose": "sitting on bed, holding supplement bottle"
+  },
+  "wardrobe": {
+    "top": "oversized pastel hoodie",
+    "style": "comfortable, relatable"
+  },
+  "environment": {
+    "location": "bedroom with plants, warm tones",
+    "lighting": "natural morning light, soft shadows"
+  },
+  "camera": {
+    "type": "phone camera, wide angle",
+    "angle": "eye level",
+    "distance": "medium shot, waist up"
+  },
+  "style": "lifestyle, relatable, morning routine"
+}
+```
+
+### Template: Snack/F&B UGC
+
+```json
+{
+  "scene": "living room couch, casual hangout vibe",
+  "subject": {
+    "type": "young adult male, Indonesian, 20-25",
+    "hair": "short, neat, casual",
+    "expression": "excited, eyes wide, about to eat",
+    "pose": "holding snack bag with both hands, mouth open"
+  },
+  "wardrobe": {
+    "top": "graphic tee, casual streetwear",
+    "style": "youthful, energetic"
+  },
+  "environment": {
+    "location": "modern living room, TV in background",
+    "lighting": "warm indoor lighting, cozy"
+  },
+  "camera": {
+    "type": "smartphone, slightly shaky",
+    "angle": "eye level, close-up",
+    "distance": "close-up, face and product visible"
+  },
+  "style": "candid, fun, authentic reaction"
+}
+```
+
+---
+
+## Step-by-Step: Buat Karakter Pertamamu
+
+<Steps>
+
+### Tentukan Karakter
+Siapkan jawaban untuk:
+- Gender, usia, etnis (sesuaikan target audience brand)
+- Gaya rambut, outfit
+- Ekspresi (senyum, serius, terkejut?)
+- Pose (memegang produk, selfie, atau lainnya?)
+
+### Tulis Prompt
+Gunakan template JSON di atas. Modifikasi sesuai kebutuhan brand.
+
+### Generate
+Masukkan prompt ke Pixazo atau fal.ai. Pilih model **Nano Banana Pro 2**.
+
+### Evaluasi
+Periksa hasil:
+- ✅ Wajah terlihat natural (bukan "plastik")?
+- ✅ Pose sesuai yang diminta?
+- ✅ Lighting konsisten?
+- ✅ Cocok dengan brand tone?
+
+### Iterate
+Kalau belum puas, ubah bagian tertentu dari prompt (expression, lighting, pose) dan regenerate.
+
+</Steps>
+
+---
+
+## Tips Karakter Konsisten
+
+| Tips | Penjelasan |
+|------|-----------|
+| **Same seed** | Kalau platform support, pakai seed yang sama untuk karakter konsisten |
+| **Similar prompt structure** | Pertahankan `subject` block identik, hanya ubah `pose` dan `environment` |
+| **Same lighting direction** | Konsisten: "soft window light from left" di semua shot |
+| **Same camera style** | Konsisten: "smartphone selfie" atau "DSLR portrait" — jangan campur |
+| **Generate 4-8 variations** | Pilih yang terbaik, buang sisanya |
+
+---
+
+## Latihan
+
+1. Buat karakter AI menggunakan **Template Beauty** di atas
+2. Generate 4 variasi dengan **pose berbeda** (memegang produk, selfie, profile, three-quarter)
+3. Simpan prompt yang menghasilkan gambar terbaik — ini jadi "base character" kamu untuk modul-modul selanjutnya
+
+### Lanjut ke
+
+[Modul 05: Prompt Engineering →](./05-prompt-engineering)

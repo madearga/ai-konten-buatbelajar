@@ -1,0 +1,193 @@
+---
+title: Video Generation — Sora 2, Seedance 2.0, Kling
+description: Cara memproduksi video AI dari text dan image — perbandingan platform dan workflow step-by-step
+---
+
+# Video Generation — Sora 2, Seedance 2.0, Kling
+
+## Dari Gambar ke Video
+
+Setelah punya karakter AI (Modul 04) dan bisa nulis prompt (Modul 05), sekarang saatnya **menghidupkan** gambar tersebut jadi video.
+
+<Callout type="info" title="Referensi Yaroflasher">
+Lesson 2 dari THE COMPLETE AI COURSE 2026 (12:35 - 43:49) cover Sora 2 Workflow secara detail: image-to-video, camera terminology, dan prompt structure untuk video.
+</Callout>
+
+---
+
+## Perbandingan Video AI
+
+| Fitur | Sora 2 | Seedance 2.0 | Kling 3.0 | Veo 3.1 |
+|-------|--------|-------------|-----------|---------|
+| **Max durasi** | 60 detik | 10 detik | 15 detik | 8 detik |
+| **Image-to-Video** | ✅ | ✅ | ✅ | ✅ |
+| **Text-to-Video** | ✅ | ✅ | ✅ | ✅ |
+| **Lip sync** | ❌ | ✅ | ❌ | ❌ |
+| **Free tier** | ❌ | ❌ | ✅ | Via Google |
+| **Harga** | $200/bulan | $10-30/video | Free + paid | Pay-per-use |
+| **Best for** | Premium sinematik | UGC + lip sync | Quick social | Character perf |
+
+---
+
+## Workflow: Image-to-Video
+
+Ini workflow yang paling umum dan paling bisa diandalkan:
+
+<Steps>
+
+### Siapkan Starting Image
+Gunakan karakter AI dari Modul 04 (Nano Banana). Pilih gambar terbaik yang ingin "dihidupkan".
+
+Pastikan:
+- ✅ Karakter jelas terlihat
+- ✅ Pose natural (tidak terlalu rigid)
+- ✅ Lighting bagus
+- ✅ Produk terlihat (jika ada)
+
+### Tulis Video Prompt
+Struktur video prompt:
+
+```
+[CAMERA] + [SUBJECT] + [ACTION] + [ENVIRONMENT] + [DURATION] + [MOOD]
+```
+
+**Contoh untuk skincare UGC:**
+```
+Static medium shot, young woman in bathroom,
+gently applies serum to cheek with upward motions,
+smiles naturally at camera,
+soft morning light, warm tones,
+8 seconds, beauty UGC lifestyle feel
+```
+
+### Generate Video
+Masukkan image + prompt ke platform:
+- **Kling** (free tier) — untuk testing
+- **Seedance 2.0** — untuk UGC + lip sync
+- **Sora 2** — untuk premium branded content
+
+### Check Quality
+Periksa hasil:
+- ✅ Motion natural (tidak "uncanny")?
+- ✅ Karakter tetap konsisten?
+- ✅ Produk tetap terlihat?
+- ✅ Durasi cukup?
+- ✅ Tidak ada artefak visual?
+
+### Iterate
+Kalau motion kurang natural, ubah action verb:
+- "gently moves" → "slowly turns"
+- "walks toward camera" → "leans forward"
+- Tambah specific: "left hand moves up, right hand holds bottle"
+
+</Steps>
+
+---
+
+## Video Prompt Templates
+
+### Skincare Application
+
+```
+Static medium close-up, woman in bright bathroom,
+pumps serum into palm, rubs hands together,
+presses onto cheeks with gentle upward motions,
+looks at camera and smiles,
+soft window light from left, warm morning glow,
+8 seconds, beauty routine aesthetic
+```
+
+### Lipstick Try-On
+
+```
+Close-up on face, woman at vanity desk,
+picks up lipstick, twists open,
+applies to upper lip then lower lip,
+presses lips together, smiles at camera,
+ring light reflection, clean background,
+6 seconds, beauty tutorial style
+```
+
+### Snack Reaction
+
+```
+Medium shot, young person on couch,
+opens snack bag with both hands,
+takes one piece, puts in mouth,
+eyes widen, nods excitedly, gives thumbs up,
+warm indoor lighting, casual living room,
+8 seconds, fun authentic reaction
+```
+
+### Supplement Routine
+
+```
+Medium shot, man at kitchen counter,
+reads supplement bottle label,
+opens cap, takes one pill with water,
+nods approvingly, puts bottle down,
+morning kitchen light, healthy lifestyle aesthetic,
+8 seconds, health testimonial style
+```
+
+---
+
+## Sora 2 — Deep Dive
+
+**Sora 2** adalah yang terbaik untuk video premium. Cocok untuk:
+- Brand film 30-60 detik
+- Product launch video
+- Storytelling campaign
+
+### Prompt Tips Sora 2 (dari Yaroflasher)
+
+```
+[Camera movement], [subject description], [action],
+[environment/setting], [lighting condition], [mood/style]
+```
+
+**Gunakan camera terminology:**
+- `slow dolly in` — kamera maju pelan
+- `tracking shot` — kamera mengikuti subject
+- `static` — kamera diam
+- `slight handheld` — goyangan natural
+- `crane up` — kamera naik
+
+**Contoh premium (Beauty brand):**
+```
+Slow dolly in, elegant woman in white silk robe,
+walks through sunlit botanical garden,
+holding skincare bottle, stops and turns to camera,
+golden hour light filtering through leaves,
+cinematic 35mm, warm color grading, luxury aesthetic
+```
+
+---
+
+## Seedance 2.0 — Lip Sync
+
+Keunggulan Seedance 2.0: **lip sync native** — karakter "berbicara" sesuai audio.
+
+### Workflow Lip Sync
+
+1. Buat karakter image (Modul 04)
+2. Tulis script voice over (Modul 05)
+3. Generate audio dengan **ElevenLabs** (Modul 03)
+4. Upload image + audio ke Seedance 2.0
+5. AI generate video dengan lip sync otomatis
+
+Ini workflow yang **paling powerful untuk UGC ads** — karakter AI berbicara promosi produk.
+
+---
+
+## Latihan
+
+1. Ambil gambar karakter AI dari latihan Modul 04
+2. Generate video 5 detik di **Kling** (free) dengan prompt sederhana
+3. Generate video 8 detik di **Seedance** dengan lip sync (jika ada credits)
+4. Bandingkan kualitas kedua platform
+5. Simpan prompt video terbaik
+
+### Lanjut ke
+
+[Modul 07: UGC Ads FMCG/Beauty/Health →](./07-ugc-ads-fmcg)

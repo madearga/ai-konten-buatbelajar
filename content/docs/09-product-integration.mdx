@@ -1,0 +1,145 @@
+---
+title: Product Integration & Virtual Try-On
+description: Teknik mengintegrasikan produk ke konten AI — product placement, virtual try-on, dan composite editing
+---
+
+# Product Integration & Virtual Try-On
+
+## Tantangan Terbesar: Produk di Tangan AI
+
+Untuk UGC ads dan branded content FMCG/Beauty/Health, **produk harus terlihat** di konten. Ini tantangan terbesar AI content creation — AI bisa bikin karakter realistis, tapi menyuruh AI "memegang" produk dengan natural itu tricky.
+
+---
+
+## 3 Metode Product Integration
+
+<Tabs items={['Composite di CapCut', 'AI Product Placement', 'Virtual Try-On']}>
+  <Tab>
+    ### Metode 1: Composite di CapCut/Canva (Termudah)
+
+    **Cocok untuk:** Pemula, quick production
+
+    <Steps>
+
+    ### Generate Karakter Tanpa Produk
+    Bikin karakter AI memegang tangan kosong (posisi seperti memegang sesuatu).
+
+    Prompt: `"young woman, one hand raised at chest height, open palm, as if holding something, looking at camera, white background"`
+
+    ### Siapkan Produk Image
+    Potret produk atau download dari brand asset. Hilangkan background (remove.bg gratis).
+
+    ### Composite di CapCut/Canva
+    1. Import video karakter sebagai base layer
+    2. Import produk image sebagai overlay
+    3. Posisikan produk di tangan karakter
+    4. Adjust size dan perspective
+    5. Tambah shadow jika perlu
+
+    ### Limitasi
+    - Tidak terlihat 100% natural dari dekat
+    - Produk tidak "berinteraksi" dengan tangan
+    - Bagus untuk thumbnail dan quick ads
+
+    </Steps>
+  </Tab>
+  <Tab>
+    ### Metode 2: AI Product Placement (Kualitas Menengah)
+
+    **Cocok untuk:** UGC yang lebih natural
+
+    Gunakan tools yang bisa integrate produk ke gambar AI:
+
+    **Higgsfield** — Built-in product placement:
+    1. Upload karakter image
+    2. Upload produk image
+    3. Pilih "Product Placement" mode
+    4. AI otomatis gabungkan
+
+    **fal.ai** — IP-Adapter / Inpainting:
+    1. Upload karakter sebagai base
+    2. Mask area tangan
+    3. Upload produk sebagai reference
+    4. AI inpaint produk ke area yang di-mask
+
+    **CreateUGC** — Built-in product integration:
+    - Upload produk → pilih avatar → AI handle sisanya
+    - Termudah tapi kurang fleksibel
+
+    **Referensi Yaroflasher:** Video "Hyper-Realistic AI Influencers" — chapter "Product Integration" dan "Outfit Layering"
+  </Tab>
+  <Tab>
+    ### Metode 3: Virtual Try-On (Kualitas Tinggi)
+
+    **Cocok untuk:** Fashion, accessories, makeup
+
+    **Higgsfield Pro Virtual Try-On:**
+    - Upload foto orang/model
+    - Upload garment/product
+    - AI generate gambar dengan produk "dipakai"
+
+    **Untuk Beauty (Lipstick, Foundation):**
+    - Generate karakter tanpa makeup/makeup netral
+    - Gunakan AI makeup try-on tools (Fotor, YouCam)
+
+    **Untuk Skincare/Serum:**
+    - Generate karakter memegang botol
+    - Composite atau AI placement (Metode 1/2)
+
+    **Referensi:** Higgsfield — "I Created a $1M Brand Using AI" chapter "Pro Virtual Try-On"
+  </Tab>
+</Tabs>
+
+---
+
+## Tips Product Integration yang Natural
+
+| Tip | Penjelasan |
+|-----|-----------|
+| **Lighting harus match** | Produk dan karakter harus punya sumber cahaya yang sama |
+| **Size proporsional** | Produk tidak boleh terlalu besar/kecil di tangan |
+| **Perspective benar** | Produk harus sesuai angle tangan/karakter |
+| **Shadow ada** | Tambah drop shadow biar produk "menempel" |
+| **Jangan perfect** | Sedikit imperfection bikin lebih natural |
+
+---
+
+## Per-Industry Product Tips
+
+### Skincare/Serum
+```
+Best angle: Karakter memegang botol di chest height
+Lighting: Soft glow di botol (serum catch light)
+Tips: Generate botol dari berbagai angle untuk composite
+```
+
+### Lipstick/Makeup
+```
+Best approach: Virtual try-on atau close-up aplikasi
+Tips: Generate karakter "applying" motion untuk video
+```
+
+### Supplement/Vitamin
+```
+Best angle: Karakter memegang botol, membaca label
+Tips: Shot "taking one pill" sangat efektif untuk testimonial
+```
+
+### Snack/F&B
+```
+Best approach: Composite snack di tangan atau lifestyle shot
+Tips: Shot "about to bite" atau "just opened" = engaging
+```
+
+---
+
+## Latihan
+
+1. Ambil foto produk apapun (bisa dari internet)
+2. Generate karakter AI memegang tangan kosong
+3. Composite produk ke gambar karakter di Canva/CapCut
+4. Evaluate: natural atau tidak?
+
+### Lanjut ke
+
+[Modul 10: Editing & Polish →](./10-editing-polish)

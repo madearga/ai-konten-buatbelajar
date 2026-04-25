@@ -1,0 +1,164 @@
+---
+title: Prompt Engineering & Context Engineering
+description: Teknik menulis prompt AI yang menghasilkan output sesuai keinginan — dari struktur prompt sampai iterasi
+---
+
+# Prompt Engineering & Context Engineering
+
+## Context Engineering, Bukan Sekadar Prompt Engineering
+
+Machina (weeklyaiops.com) menekankan: istilah yang tepat adalah **"Context Engineering"** — bukan cuma menulis prompt, tapi memberikan **context lengkap** supaya AI paham apa yang kamu mau.
+
+> Prompt = "Bikin gambar cewek"
+> Context Engineering = "Young Indonesian woman (25), glowing skin, holding serum bottle, bathroom selfie, morning light, smartphone camera, UGC style"
+
+Perbedaannya? **Yang pertama hasilnya random. Yang kedua hasilnya presisi.**
+
+<Callout type="info" title="Referensi">
+- **Machina** — Module "Context Engineering" dari weeklyaiops.com
+- **@IamEmily2050** — Workflow: Grok 4 (draft) → Kimi K2 (refine) → target platform. Emily shares prompt JSON gratis di X.
+</Callout>
+
+---
+
+## Struktur Prompt yang Efektif
+
+### Image Prompt Formula
+
+```
+[SUBJECT] + [ACTION/POSE] + [ENVIRONMENT] + [LIGHTING] + [CAMERA] + [STYLE]
+```
+
+#### ❌ Prompt Buruk
+```
+cewek cantik pegang skincare
+```
+
+#### ✅ Prompt Baik
+```
+Young Indonesian woman (24), clear glowing skin, genuine smile,
+holding white skincare serum bottle at chest height,
+modern bathroom with white tiles,
+soft morning window light from left,
+smartphone selfie angle slightly above eye level,
+candid unposed UGC style, natural feel
+```
+
+---
+
+### Video Prompt Formula
+
+```
+[CAMERA MOVEMENT] + [SUBJECT] + [ACTION SEQUENCE] + [ENVIRONMENT] + [MOOD]
+```
+
+#### ❌ Prompt Buruk
+```
+cewek pakai lipstick
+```
+
+#### ✅ Prompt Baik
+```
+Static medium shot, young woman in bright bedroom,
+picks up lipstick from vanity table,
+applies to lips with confident smile,
+looks at camera and nods approvingly,
+warm golden hour light through curtains,
+beauty lifestyle aesthetic, 8 seconds
+```
+
+---
+
+## Prompt Templates — Siap Pakai
+
+### Skincare Serum UGC
+
+```
+Subject: Young woman (22-26), Southeast Asian, clear skin
+Action: Holds serum bottle, applies to cheek, smiles
+Environment: Clean bathroom, white/neutral tones
+Camera: Phone selfie, slightly above eye level
+Style: UGC authentic, casual, lifestyle
+```
+
+### Lipstick Swatch Video
+
+```
+Subject: Woman (20-28), defined lips, neutral makeup base
+Action: Opens lipstick, applies to lips, presses lips together, shows camera
+Environment: Bright vanity/desk, ring light reflection
+Camera: Close-up on lips, static
+Style: Beauty tutorial aesthetic, clean background
+```
+
+### Supplement Testimonial
+
+```
+Subject: Man or woman (25-35), healthy look, athletic build
+Action: Reads supplement label, nods, takes one, gives thumbs up
+Environment: Kitchen counter or gym bag visible
+Camera: Medium shot, phone camera
+Style: Health testimonial, relatable, casual
+```
+
+### Snack Taste Test
+
+```
+Subject: Young person (18-25), expressive face
+Action: Opens snack bag, takes bite, eyes widen, nods excitedly
+Environment: Living room couch or desk
+Camera: Close-up on face + product, phone camera
+Style: Fun, authentic reaction, TikTok style
+```
+
+---
+
+## Iteration Workflow
+
+Machina dan @IamEmily2050 pakai workflow yang sama:
+
+<Steps>
+
+### Draft Prompt
+Tulis prompt kasar dengan bahasa kamu sendiri. Jangan pusingkan format dulu.
+
+### Refine dengan AI
+Masukkan draft ke **Kimi K2** atau **Claude** dan minta mereka ubah jadi structured prompt:
+> "Ubah deskripsi ini jadi structured JSON prompt untuk AI image generation: [draft kamu]"
+
+### Generate
+Masukkan refined prompt ke target platform (Nano Banana, Dreamina, dll).
+
+### Evaluate & Iterate
+Kalau belum sesuai, identifikasi bagian mana yang kurang:
+- Pose salah? → Ubah `pose` section
+- Lighting kurang? → Tambah detail `lighting`
+- Style beda? → Spesifikan `camera` dan `style`
+
+</Steps>
+
+---
+
+## Kesalahan Umum Pemula
+
+| # | Kesalahan | Solusi |
+|---|-----------|--------|
+| 1 | Prompt terlalu pendek | Minimal 30 kata, cover semua element |
+| 2 | Tidak sebutkan camera style | Selalu tulis: "smartphone selfie" atau "DSLR portrait" |
+| 3 | Lupa lighting direction | Selalu tulis: "soft window light from left" atau "bright studio" |
+| 4 | Generate sekali langsung puas | Iterate minimum 3x sebelum putuskan |
+| 5 | Campur bahasa | Gunakan English untuk prompt (AI lebih paham) |
+| 6 | Tidak dokumentasi prompt yang berhasil | Simpan prompt yang bagus di notes |
+
+---
+
+## Latihan
+
+1. Tulis prompt untuk **karakter AI** memegang produk brand kamu (pakai formula di atas)
+2. Refine prompt menggunakan Kimi K2 atau Claude
+3. Generate 3 variasi di Dreamina (gratis) atau Pixazo
+4. Simpan **prompt terbaik** — ini jadi template yang dipakai di modul-modul selanjutnya
+
+### Lanjut ke
+
+[Modul 06: Video Generation →](./06-sora-seedance)
